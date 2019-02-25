@@ -76,7 +76,28 @@ class Altlab_Postgrid_Admin {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/altlab-postgrid-admin.css', array(), $this->version, 'all' );
 
 	}
+/**
+	 * Register the javascript for the public-facing side of the site.
+	 *
+	 * @since    1.0.0
+	 */
+	public function enqueue_scripts() {
 
+		/**
+		 * This function is provided for demonstration purposes only.
+		 *
+		 * An instance of this class should be passed to the run() function
+		 * defined in Altlab_Postgrid_Loader as all of the hooks are defined
+		 * in that particular class.
+		 *
+		 * The Altlab_Postgrid_Loader will then create the relationship
+		 * between the defined hooks and the functions defined in this
+		 * class.
+		 */
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/altlab-postgrid-public.js', array( 'jquery' ), $this->version, false );
+
+	}
 
 }
 
@@ -259,6 +280,9 @@ function altlab_postgrid_shortcode( $atts ) {
 			if (has_excerpt()){ //prevents failure on posts with no excerpt/body content
 				$output .= get_the_excerpt();
 			}
+		}
+		if ( $a['excerpt'] == 'full' ){
+				$output .= get_the_content(); //technically not an excerpt . . . 
 		}
 
 		if ( current_user_can('administrator') ){
