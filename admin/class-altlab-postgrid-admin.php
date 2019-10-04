@@ -277,9 +277,9 @@ function altlab_postgrid_shortcode( $atts ) {
 			$output .= get_the_content();
 		}
 		if ( $a['excerpt'] == 'true' ){
-			if (has_excerpt()){ //prevents failure on posts with no excerpt/body content
+			//if (has_excerpt($post->ID)){ //prevents failure on posts with no excerpt/body content
 				$output .= get_the_excerpt();
-			}
+			//}
 		}
 		if ( $a['excerpt'] == 'full' ){
 				$output .= get_the_content(); //technically not an excerpt . . . 
